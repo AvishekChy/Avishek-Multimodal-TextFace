@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avishek Multimodal Emotion Detector</title>
+    <style>
+      :root {
+        --amber: #ffbe0b;
+        --rose: #ff006e;
+        --azure: #3a86ff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #a5d0d6ff;
+        color: var(--amber);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+        line-height: 1.6;
+      }
+
+      .container {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); /* Subtle overlay for modern glass effect */
+        backdrop-filter: blur(1px);
+        border-radius: 20px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 8px 32px rgba(39, 71, 122, 0.2);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      h1 {
+        color: var(--rose);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 1.1rem;
+        color: var(--amber);
+        margin-bottom: 0.5rem;
+      }
+
+      input[type="file"],
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--amber);
+        border-radius: 8px;
+        background: rgba(255, 190, 11, 0.1); /* Amber tint */
+        color: black;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      input[type="file"]:focus,
+      textarea:focus {
+        border-color: var(--rose);
+        box-shadow: 0 0 8px rgba(255, 0, 110, 0.5);
+        outline: none;
+      }
+
+      button {
+        background-color: var(--amber);
+        color: black;
+        border: none;
+        padding: 0.9rem 2rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: var(--rose);
+        transform: scale(1.01);
+        color: black;
+      }
+
+      #result {
+        margin-top: 1.5rem;
+        font-size: 1.3rem;
+        color: var(--rose);
+        background: rgba(255, 0, 110, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        animation: fadeIn 0.8s ease-in;
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+        .container {
+          padding: 1.5rem;
+        }
+        button {
+          padding: 0.75rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Multimodal Emotion Detector</h1>
+      <form id="emotionForm" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="image">Upload Image</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="text">Enter Text</label>
+          <textarea
+            id="text"
+            name="text"
+            rows="4"
+            cols="50"
+            placeholder="Type your feelings..."
+            required
+          ></textarea>
+        </div>
+        <button type="submit">Predict</button>
+      </form>
+      <div id="result" class="result"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("emotionForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          const resultDiv = document.getElementById("result");
+          resultDiv.innerHTML = "Processing...";
+
+          const response = await fetch("/predict", {
+            method: "POST",
+            body: formData,
+          });
+          const data = await response.json();
+
+          if (data.error) {
+            resultDiv.innerHTML = data.error;
+          } else {
+            resultDiv.innerHTML = `Predicted Emotion: ${data.emotion} (Confidence: ${data.confidence})`;
+          }
+        });
+    </script>
+  </body>
+</html>

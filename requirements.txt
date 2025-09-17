@@ -1,0 +1,5 @@
+flask==2.3.2
+tensorflow==2.17.0  # Latest compatible with Python 3.12
+keras==3.3.3       # Updated Keras version
+pillow==10.4.0
+nltk==3.8.1
