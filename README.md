@@ -101,7 +101,7 @@ A multimodal emotion detection web application that combines text sentiment anal
 - Libraries: [Flask](https://flask.palletsprojects.com/), [TensorFlow](https://www.tensorflow.org/), [Keras](https://keras.io/), [NumPy](https://numpy.org/), [Pillow](https://python-pillow.org/)
 - Inspiration: Multimedia course project in Level-4 Term-I at [CUET](https://www.cuet.ac.bd)
 
-Give a star if you find this project useful! ⭐
+## Give a star if you find this project useful! ⭐
 
 ![Important Note](https://img.shields.io/badge/Important-Note-%23ffbe0b?logo=warning)
 
