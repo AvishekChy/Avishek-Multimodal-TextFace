@@ -6,8 +6,6 @@ A multimodal emotion detection web application that combines text sentiment anal
 
 ![App Demo](./project_output.png)
 
-![App Demo](./prediction_output.png)
-
 ## Technologies
 
 - **Backend**: Flask (Python web framework)
@@ -59,7 +57,12 @@ A multimodal emotion detection web application that combines text sentiment anal
 6. **Access the Web App**:
    - Open your browser and go to `http://localhost:5000`
 7. **Upload an Image and Enter Text**:
+
    - Upload a face image and enter text to see the emotion prediction.
+
+## If run correctly, the web app would show like this:
+
+![App Demo](./prediction_output.png)
 
 ## Project Structure
 
@@ -97,3 +100,5 @@ A multimodal emotion detection web application that combines text sentiment anal
 - Datasets: [FER2013](https://www.kaggle.com/datasets/msambare/fer2013), [Emotion Dataset](https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp)
 - Libraries: [Flask](https://flask.palletsprojects.com/), [TensorFlow](https://www.tensorflow.org/), [Keras](https://keras.io/), [NumPy](https://numpy.org/), [Pillow](https://python-pillow.org/)
 - Inspiration: Multimedia course project in Level-4 Term-I at [CUET](https://www.cuet.ac.bd)
+
+### Give a star if you find this project useful! ⭐
